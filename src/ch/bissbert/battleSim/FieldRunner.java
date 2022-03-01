@@ -17,10 +17,11 @@ public record FieldRunner(Field field) {
 
         System.out.println(Arrays.toString(args));
 
-        Field field = new Field();
+        Field field = new Field(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
         Random obj = new Random();
 
-        for (String teamString : args) {
+        for (int i = 2; i < args.length; i++) {
+            String teamString = args[i];
 
             String[] teamSplit = teamString.split("=");
             final String teamName = teamSplit[0];
@@ -69,7 +70,6 @@ public record FieldRunner(Field field) {
         System.out.println(this.field());
         System.out.println("Press enter to start the runner");
         new Scanner(System.in).nextLine();
-
 
     }
 

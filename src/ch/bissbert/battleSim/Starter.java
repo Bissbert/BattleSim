@@ -8,7 +8,7 @@ import ch.bissbert.battleSim.data.weapon.Ak45;
 
 public class Starter {
     public static void main(String[] args) {
-        Field field = new Field();
+        Field field = new Field(10, 10);
 
         Team russia = new Team("Russia", "#ffffff", field);
         System.out.println(russia);
