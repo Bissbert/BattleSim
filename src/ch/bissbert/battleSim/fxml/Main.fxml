@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bissbert.battleSim.fxml.MainController">
+   <top>
+      <BorderPane maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <left>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bissberts Battler" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+         </left>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </BorderPane>
+   </top>
+   <center>
+      <Canvas fx:id="canvas" height="351.0" width="600.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
