@@ -7,70 +7,24 @@ import ch.bissbert.battleSim.data.unit.specific.AKUnit;
 import ch.bissbert.battleSim.data.unit.specific.CarbideUnit;
 import ch.bissbert.battleSim.data.weapon.modifier.Modifier;
 import ch.bissbert.battleSim.data.weapon.modifier.Modifiers;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-public record FieldRunner(Field field) {
+public class FieldRunner extends Application {
 
-    public static void main(String[] args) {
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent parent = FXMLLoader.load(getClass().getResource("/ch/bissbert/battleSim/fxml/Main.fxml"));
+        Scene scene = new Scene(parent);
 
-        System.out.println(Arrays.toString(args));
-
-        Field field = new Field(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-        Random obj = new Random();
-
-        for (int i = 2; i < args.length; i++) {
-            String teamString = args[i];
-
-            String[] teamSplit = teamString.split("=");
-            final String teamName = teamSplit[0];
-
-            int rand_num = obj.nextInt(0xffffff + 1);
-            String colorCode = String.format("#%06x", rand_num);
-
-            Team team = new Team(teamName, colorCode, field);
-
-            for (String units : teamSplit[1].split(",")) {
-                createUnits(units, team);
-            }
-        }
-
-        new FieldRunner(field).start();
+        stage.setTitle("Bissberts Battler");
+        stage.setScene(scene);
+        stage.show();
     }
-
-    private static void createUnits(String units, Team team) {
-        int count = Integer.parseInt(units.substring(1));
-        Class<? extends Unit> unitClass;
-        List<Modifier> modifiers = new ArrayList<>();
-
-        switch (units.charAt(0)) {
-            case 's':
-                modifiers.add(Modifiers.BETTER_SCOPE);
-            case 'a':
-                unitClass = AKUnit.class;
-                break;
-            case 'c':
-            default:
-                unitClass = CarbideUnit.class;
-        }
-
-        for (int i = 0; i < count; i++) {
-            try {
-                Unit unit = unitClass.getDeclaredConstructor(Team.class).newInstance(team);
-                unit.getWeapon().getModifiers().addAll(modifiers);
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-    private void start() {
-        System.out.println(this.field());
-        System.out.println("Press enter to start the runner");
-        new Scanner(System.in).nextLine();
-
-    }
-
 }
