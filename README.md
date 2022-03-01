@@ -18,10 +18,13 @@ AI as well as the possibility for the player to control their own team.
 The field should be displayed as a bitmap on the GUI with each Unit being a pixel having the color of their Team.
 
 Example to start the tool:
-java BattleSim 10 10 russia=1s,2a,3c ukrain=3s,2a
+- `java BattleSim 10 10 russia=1s,2a,3c ukrain=3s,2a`
 
-This is composed of the size of the field as the first 2 params.
-Followed by a Team; Here the name and the content is split using the '=' char. In the content first the [Unit Types](#unit-types) as their char are set followed by the amount of said type to be found. If more than one type os unit is wanted they have to be seperated by a ',' (comma)
+
+
+This is composed of the size of the field as the first 2 params. Followed by a Team; Here the name and the content is
+split using the '=' char. In the content first the [Unit Types](#unit-types) as their char are set followed by the
+amount of said type to be found. If more than one type os unit is wanted they have to be seperated by a ',' (comma)
 
 ## Unit Types
 
