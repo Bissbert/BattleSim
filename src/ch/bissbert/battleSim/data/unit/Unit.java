@@ -10,6 +10,7 @@ public abstract class Unit {
     protected int moveDistance;
     private Weapon weapon;
     private Team team;
+    private Unit target;
 
     public Unit(int x, int y, int hp, int moveDistance, Weapon weapon, Team team) {
         setX(x);
@@ -58,6 +59,14 @@ public abstract class Unit {
 
     public void setMoveDistance(int moveDistance) {
         this.moveDistance = moveDistance;
+    }
+
+    public Unit getTarget() {
+        return target;
+    }
+
+    public void setTarget(Unit target) {
+        this.target = target;
     }
 
     public Weapon getWeapon() {
