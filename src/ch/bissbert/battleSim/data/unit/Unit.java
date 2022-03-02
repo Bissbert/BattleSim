@@ -1,10 +1,15 @@
 package ch.bissbert.battleSim.data.unit;
 
 import ch.bissbert.battleSim.data.AttackSuccess;
+import ch.bissbert.battleSim.data.drawing.Drawable;
 import ch.bissbert.battleSim.data.weapon.Weapon;
 import ch.bissbert.battleSim.util.MovementUtil;
+import javafx.scene.canvas.GraphicsContext;
 
-public abstract class Unit {
+public abstract class Unit implements Drawable {
+
+    private final static int DRAW_SIZE = 1;
+
     private int x, y;
     private double hp, maxHP;
     protected int moveDistance;
@@ -26,6 +31,10 @@ public abstract class Unit {
 
     }
 
+    @Override
+    public void draw(GraphicsContext graphicsContext) {
+        graphicsContext.fillOval(x - DRAW_SIZE, y - DRAW_SIZE, x + DRAW_SIZE, y + DRAW_SIZE);
+    }
 
     public abstract int getMoveDistance();
 

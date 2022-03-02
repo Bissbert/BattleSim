@@ -1,13 +1,17 @@
 package ch.bissbert.battleSim.data.unit;
 
 import ch.bissbert.battleSim.data.Field;
+import ch.bissbert.battleSim.data.drawing.DrawRunnable;
+import ch.bissbert.battleSim.data.drawing.Drawable;
 import ch.bissbert.battleSim.data.player.AiPlayer;
 import ch.bissbert.battleSim.data.player.Player;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Team {
+public class Team implements Drawable {
     private String name;
     private List<Unit> members;
     private List<Player> players;
@@ -21,6 +25,7 @@ public class Team {
         field.getTeamsOnField().add(this);
         this.members = new ArrayList<>();
         this.players = new ArrayList<>();
+        DrawRunnable.DRAWABLES.add(this);
     }
 
     public String getName() {
@@ -71,5 +76,13 @@ public class Team {
                 ", members=" + members.stream().map(unit -> unit.getClass().getSimpleName()).toList() +
                 ", color='" + color + '\'' +
                 '}';
+    }
+
+    @Override
+    public void draw(GraphicsContext graphicsContext) {
+        for (Unit unit : getMembers()) {
+            graphicsContext.setFill(Color.valueOf(this.getColor()));
+            unit.draw(graphicsContext);
+        }
     }
 }
