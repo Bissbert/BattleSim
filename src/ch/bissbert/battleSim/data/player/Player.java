@@ -3,6 +3,13 @@ package ch.bissbert.battleSim.data.player;
 import ch.bissbert.battleSim.data.Field;
 import ch.bissbert.battleSim.data.unit.Unit;
 
+/**
+ * A player in a game that controls a single unit.
+ *
+ * @author Bissbert
+ * @version 1.0
+ * @since 1.0
+ */
 public abstract class Player {
 
     private final Field field;
@@ -21,7 +28,13 @@ public abstract class Player {
         return unit;
     }
 
+    /**
+     * Moves the unit as defined in the implementation.
+     */
     abstract void move();
 
+    /**
+     * The unit uses an action as defined in the implementation.
+     */
     abstract void attack();
 }

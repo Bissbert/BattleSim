@@ -6,24 +6,48 @@ import ch.bissbert.battleSim.util.MovementUtil;
 
 import java.util.List;
 
+/**
+ * An AI player to control a single unit.
+ *
+ * @author Bissbert
+ * @version 1.0
+ * @since 1.0
+ */
 public class AiPlayer extends Player {
 
     public AiPlayer(Field field, Unit unit) {
         super(field, unit);
     }
 
+    /**
+     * Moves the unit to the nearest other unit on the field.
+     * If there is no other unit, the unit will not move.
+     */
     @Override
     public void move() {
         Unit nearestUnit = getNearestUnit();
-        getUnit().move(nearestUnit.getX(), nearestUnit.getY());
+        if (nearestUnit != null) {
+            getUnit().move(nearestUnit.getX(), nearestUnit.getY());
+        }
     }
 
+    /**
+     * Attacks the nearest unit on the field.
+     * If there is no other unit, the unit will not attack.
+     */
     @Override
     public void attack() {
         Unit nearestUnit = getNearestUnit();
-        this.getUnit().attack(nearestUnit);
+        if (nearestUnit != null) {
+            this.getUnit().attack(nearestUnit);
+        }
     }
 
+    /**
+     * Returns the nearest unit on the field.
+     *
+     * @return the nearest unit on the field
+     */
     private Unit getNearestUnit() {
         List<Unit> allUnitsOnBoard = getField().getAllUnits();
         Unit me = getUnit();
