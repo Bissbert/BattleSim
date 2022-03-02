@@ -44,7 +44,7 @@ public class BattleSim {
         }
 
         FIELD = field;
-
+        System.out.println(field);
         Application.launch(FieldRunner.class);
     }
 
